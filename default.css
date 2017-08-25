@@ -1,0 +1,312 @@
+table.gxTable1 {
+	padding:8px;
+	text-align:left;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+th.gxTh1 {
+	padding:8px;
+	text-align:left;	
+	
+}
+
+
+table.iconTable1 {
+	padding:4px;
+	text-align:left;
+	margin-left:auto;
+	margin-right:auto;
+	color:#FFFFFF;
+}
+
+th.iconTh1 {
+	padding:8px;
+	text-align:center;	
+	
+}
+
+
+div.iconHeadFoot {
+	//display:inline-block;
+	background-color: #000000;
+	//padding:10px;
+	//border: #000000 2px solid;
+	color:#FFFFFF;
+	
+	
+	
+}
+
+div.iconContainer {
+	display:inline-block;
+	background-color: #FFFFFF;
+	//padding:10px;
+	border: #000000 2px solid;
+	width:83px;
+	margin:5px;
+	padding-top:4px;
+	
+}
+
+div.iconHexText {
+	background-color: #000000;
+	color: #FFFFFF;
+	padding-top:2px;
+	padding-bottom:2px;
+	//border: #000000 2px solid;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	text-align:center;
+
+	
+}
+
+
+
+
+
+#mainBody {
+	background-color:#172d84;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:15px;
+}
+
+
+#mainContainer {
+	
+	background-color:#69757f;
+	//background-image: url('./img/0600379F.bmp');
+	//a59f96;
+	width:970px;
+	margin-left:auto;
+	margin-right:auto;
+	border: #000000 2px solid;
+	padding: 8px;
+	
+}
+
+#exampleBody {
+	display:none; 
+	border:#000000 2px solid;
+	background-color:#69757f;
+	margin:5px;
+	
+}
+
+div.exampleTitle {
+	background-color:#000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:16px;
+	color: #FFFFFF;
+	font-weight:bold;
+	text-align:center;
+	padding:5px;
+
+	
+	
+}
+
+
+div.section {
+	
+	background-color: #fffaed;
+	padding:15px;
+	border: #000000 2px solid;
+	//background-image: url('./img/06003ACE.bmp');
+	
+	
+}
+
+font.subSectionTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:16px;
+	color: #000000;
+	font-weight:bold;
+}
+	
+	
+
+
+div.sectionTitle {
+	background-color:#4789c6;
+	padding:5px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:20px;
+	color: #FFFFFF;
+	margin-bottom:20px;
+
+	
+}
+div.mainTitle {
+	background-color:#4789c6;
+	//background-image:url('./img/weaponbuilder.jpg');
+	padding:8px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:30px;
+	text-align:center;
+	color: #FFFFFF;
+
+	border: #000000 2px solid;
+		
+}
+
+div.subSection {
+	background-color: #bce7ff;
+	padding:5px;
+	border: #000000 2px solid;
+	
+}
+
+div.sectionSpacer {
+	
+	margin-top:8px;
+}
+
+#downloadBox {
+	
+	background-color: #c6ffcc;
+	padding:15px;
+	border: #005b09 2px solid;
+	
+	
+}
+
+
+button.phButton {
+	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:20px;
+	padding:8px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+img.weaponIcon {
+	
+	background-image:url('./img/ac_icons/11CB.png');
+}
+
+#spellContainer {
+	
+	overflow:scroll;
+	height:300px;
+	border: #000000 1px solid;
+}
+
+input.phTextBox {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:16px;
+	padding:4px;
+	border-radius:5px;
+	border: #000000 1px solid;
+
+	
+	
+}
+
+#phCurrentSpells {
+	overflow:scroll;
+	height:300px;
+	border: #000000 1px solid;
+	
+}
+
+//========================================================================================================================
+
+
+#myInput {
+    background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
+
+#completeSpellList {
+    /* Remove default list styling */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#completeSpellList li a {
+    border: 1px solid #ddd; /* Add a border to all links */
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6; /* Grey background color */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove default text underline */
+    font-size: 18px; /* Increase the font-size */
+    color: black; /* Add a black text color */
+    display: block; /* Make it into a block element to fill the whole list */
+}
+
+#completeSpellList li a.header {
+    background-color: #e2e2e2; /* Add a darker background color for headers */
+    cursor: default; /* Change cursor style */
+}
+
+#completeSpellList li a:hover:not(.header) {
+    background-color: #eee; /* Add a hover effect to all links, except for headers */
+}
+
+
+
+
+
+
+
+
+#currentSpellList {
+    /* Remove default list styling */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#currentSpellList li a {
+    border: 1px solid #ddd; /* Add a border to all links */
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6; /* Grey background color */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove default text underline */
+    font-size: 18px; /* Increase the font-size */
+    color: black; /* Add a black text color */
+    display: block; /* Make it into a block element to fill the whole list */
+}
+
+#currentSpellList li a.header {
+    background-color: #e2e2e2; /* Add a darker background color for headers */
+    cursor: default; /* Change cursor style */
+}
+
+#currentSpellList li a:hover:not(.header) {
+    background-color: #eee; /* Add a hover effect to all links, except for headers */
+}
+
+
+#phWieldAttribute {
+	display: none;
+	
+}
+
+
+#phWieldVital {
+	display: none;
+	
+}
+
+
+#phWieldSkill{
+	display: none;
+	
+}
+
+#phWieldValue{
+	display: none;
+	
+}
