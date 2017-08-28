@@ -16,9 +16,20 @@ require ('../db_connect.php');
 mysqli_close ($db_conn);	
 
 
+session_start();
+
+
 $iconUnderlayArray = array('0x11CB','0x11CD','0x11CE','0x11CF','0x11D0','0x11D1','0x11D2','0x11D3','0x11D4','0x11D5','0x11F3','0x11F4','0x3353','0x3354','0x3355','0x3356','0x3357','0x3358','0x3359','0x335A','0x335B','0x335C');																																				
 
 $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066','0x0x640F','0x0x6410','0x0x6411','0x0x6412','0x0x6413');
+
+
+
+if ($_GET['theme']) {
+	
+	$_SESSION['theme'] = $_GET['theme'].'.css';
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -29,7 +40,17 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 			Trai's Weapon Builder
 		</title>
 
-		<link rel="stylesheet" type="text/css" href="default.css" />
+		<?PHP
+			if (!$_SESSION['theme']) {
+				$theme = "classic.css";
+			}
+			else {
+				$theme = $_SESSION['theme'];
+			}
+			
+			echo '<link rel="stylesheet" type="text/css" href="'.$theme.'" />';
+		?>
+		
 
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,8 +64,6 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 	
 
 		<?PHP
-		
-			session_start();
 
 				if (!$_SESSION['authorized']) {
 		
@@ -83,13 +102,13 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 	
 		
 		<div class="mainTitle">
-			Trai's Weapon Builder for PhatAC
+			<font id="titleFont">Weapon Builder for PhatAC</font>
 		</div>		
 		
 		<div class="sectionSpacer"> </div>
 
 		<?PHP
-		session_start();
+		
 			if ($_SESSION['jsonFile']) {
 				echo '
 				<div id="downloadBox">
@@ -116,33 +135,63 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 				';
 				
 			}
+			
+			if ($_SESSION['phImportFile']) {
+				
+				echo '
+				<div id="importReturn">
+					'.$_SESSION['phImportFile'].' has been imported, '.$_SESSION['phImportedKeys'].' keys where recognized.';
+					
+				if ($_SESSION['phUnknownKeys'] > 0) {
+						echo '<br/>
+							WARNING: File contains '.$_SESSION['phUnknownKeys'].' unknown key(s).';
+				
+				}
+				
+				echo '</div>';
+				echo '<div class="sectionSpacer"> </div>';
+			}
+			
+			
+			
 		?>
 		
-	<div id="menu">
-		<table>
+	<div id="phMainMenu">
+		<table class="gxMenuTable">
 			<tr>
-				<th>
+				<th class="gxThMenu">
+					<button id="showImportButton" type="button">Import JSON...</button>
+				</th>
+				<th class="gxThMenu">
 					<a href="auth.php?startnew=melee"><button class="menuButton" type="button">New Melee Weapon</button></a>
 				</th>
-				<th>
+				<th class="gxThMenu">
 					<a href="auth.php?startnew=magic"><button class="menuButton" type="button">New Casting Weapon</button></a>
 				</th>
-				<th>
+				<th class="gxThMenu">
 					<a href="auth.php?startnew=missile"><button class="menuButton" type="button">New Missile Weapon</button></a>
 				</th>
-				<th>
+				<th class="gxThMenu">
 					<?PHP
-					
+						$recognizeWeenie=false;
 						if ($_SESSION['phWeenieType']==6) {
 							echo 'Current Type: Melee Weapon';
+							$recognizeWeenie = True;
 						}
 						
 						if ($_SESSION['phWeenieType']==35) {
 							echo 'Current Type: Casting Weapon';
+							$recognizeWeenie = True;
 						}
 						
 						if ($_SESSION['phWeenieType']==3) {
 							echo 'Current Type: Missile Weapon';
+							$recognizeWeenie = True;
+						}
+						
+						if ($recognizeWeenie == false) {
+							echo '<font class="errorRed">Current Type: ERROR!!</font> <a href="fixweenie.php"><button>Fix This</button></a>';
+							
 						}
 						
 					
@@ -151,6 +200,20 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 				</th>
 			</tr>
 		</table>
+		
+		<div id="importView">
+			<p id="importText">Drag/Drop file into box or click in box to open browse window</p>
+			<form enctype="multipart/form-data" action="import.php" method="POST" id="uploadForm">
+				<input type="hidden" name="MAX_FILE_SIZE" value="300000" />
+				<input type="file" name="userfile" id="userFile">
+				
+				
+			</form>
+		</div>
+		
+		
+		
+		
 	</div>
 		
 	<div class="sectionSpacer"> </div>	
@@ -251,6 +314,15 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 						</th>
 						<th class="gxTh1">
 							<select name="phSkillType">
+								<option value=0'; if ($_SESSION['phSkillType']==0 OR $_SESSION['phSkillType']==NULL){ echo ' SELECTED'; } echo '>Not Set</option>
+								<option value=1'; if ($_SESSION['phSkillType']==1){ echo ' SELECTED'; } echo '>Axe (depreciated)</option>
+								<option value=4'; if ($_SESSION['phSkillType']==4){ echo ' SELECTED'; } echo '>Dagger (depreciated)</option>
+								<option value=5'; if ($_SESSION['phSkillType']==5){ echo ' SELECTED'; } echo '>Mace (depreciated)</option>
+								<option value=9'; if ($_SESSION['phSkillType']==9){ echo ' SELECTED'; } echo '>Spear (depreciated)</option>
+								<option value=10'; if ($_SESSION['phSkillType']==10){ echo ' SELECTED'; } echo '>Staff  (depreciated)</option>
+								<option value=11'; if ($_SESSION['phSkillType']==11){ echo ' SELECTED'; } echo '>Sword (depreciated)</option>
+								<option value=13'; if ($_SESSION['phSkillType']==13){ echo ' SELECTED'; } echo '>Unarmed (depreciated)</option>
+								
 								<option value=41'; if ($_SESSION['phSkillType']==41){ echo ' SELECTED'; } echo '>Two Handed Combat</option>
 								<option value=44'; if ($_SESSION['phSkillType']==44){ echo ' SELECTED'; } echo '>Heavy Weapons</option>
 								<option value=45'; if ($_SESSION['phSkillType']==45){ echo ' SELECTED'; } echo '>Light Weapons</option>
@@ -262,6 +334,7 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 						</th>
 						<th class="gxTh1">
 							<select name="phWeaponType">
+								<option value=0'; if ($_SESSION['phWeaponType']==0 OR $_SESSION['phWeaponType']==NULL){ echo ' SELECTED'; } echo '>Not Set</option>
 								<option value=1'; if ($_SESSION['phWeaponType']==1){ echo ' SELECTED'; } echo '>Unarmed</option>
 								<option value=2'; if ($_SESSION['phWeaponType']==2){ echo ' SELECTED'; } echo '>Sword</option>
 								<option value=3'; if ($_SESSION['phWeaponType']==3){ echo ' SELECTED'; } echo '>Axe</option>
@@ -276,6 +349,7 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 						</th>
 						<th class="gxTh1">
 							<select name="phDamageType">
+								<option value=0'; if ($_SESSION['phDamageType']==0 OR $_SESSION['phDamageType']==NULL){ echo ' SELECTED'; } echo '>Not Set</option>
 								<option value=1'; if ($_SESSION['phDamageType']==1){ echo ' SELECTED'; } echo '>Slashing</option>
 								<option value=2'; if ($_SESSION['phDamageType']==2){ echo ' SELECTED'; } echo '>Piercing</option>
 								<option value=3'; if ($_SESSION['phDamageType']==3){ echo ' SELECTED'; } echo '>Slashing/Piercing</option>
@@ -338,7 +412,7 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 							Maximum Velocity:
 						</th>
 						<th class="gxTh1">
-							<input type="text" name="phMaxVelocity" value="'.$_SESSION['phMaxVelocity'].'">
+							<input type="text" name="phVelocity" value="'.$_SESSION['phMaxVelocity'].'">
 						</th>
 						<th class="gxTh1">
 							Ammo Type:
@@ -406,6 +480,8 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 								<option value=16'; if ($_SESSION['phDamageType']==16){ echo ' SELECTED'; } echo '>Fire</option>
 								<option value=32'; if ($_SESSION['phDamageType']==32){ echo ' SELECTED'; } echo '>Acid</option>
 								<option value=64'; if ($_SESSION['phDamageType']==64){ echo ' SELECTED'; } echo '>Electrical</option>
+								<option value=1024'; if ($_SESSION['phDamageType']==1024){ echo ' SELECTED'; } echo '>Nether</option>
+								
 							</select>
 						</th>
 						<th class="gxTh1">
@@ -572,7 +648,7 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 						Attack Type:
 					</th>
 					<th class="gxTh1">
-						<input type="text" name="phAttackType" value="6">
+						<input type="text" name="phAttackType" value="<?PHP echo $_SESSION['phAttackType']; ?>">
 					</th>
 					
 					<th class="gxTh1">
@@ -624,6 +700,7 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 						
 							
 						<select name="phWieldSkill" id="phWieldSkill" <?PHP if ( ($_SESSION['phWieldReq'] > 0 AND $_SESSION['phWieldReq'] < 3) OR ($_SESSION['phWieldReq'] == 8) ) { echo 'style="display:block;"'; } ?>>	
+							<option value=0 <?PHP if ($_SESSION['phWieldSkill']==0 OR $_SESSION['phWieldSkill']==NULL){ echo 'SELECTED'; } ?>>Not Set</option>
 							
 							<?PHP
 							while ($db_row=mysqli_fetch_array($db_skills,MYSQLI_ASSOC)) {
@@ -782,7 +859,7 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 						Setup ID (model):
 					</th>
 					<th class="gxTh1">
-						<input type="text" name="phDidSetup" value="<?PHP echo $_SESSION['phDef_setupDid']; ?>" required>
+						<input type="text" name="phDidSetup" value="<?PHP echo $_SESSION['phDidSetup']; ?>" required>
 					</th>
 					<th class="gxTh1">
 						Translucency:
@@ -811,7 +888,7 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 							Icon ID:
 						</th>
 						<th class="gxTh1">
-							<input type="text" name="phDidIcon" value="<?PHP echo $_SESSION['phDef_iconDid']; ?>" required>
+							<input type="text" name="phDidIcon" value="<?PHP echo $_SESSION['phDidIcon']; ?>" required>
 						</th>
 					</tr>
 						<th class="gxTh1">
@@ -876,9 +953,24 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 	</form>
 	</div>
 	
-	Updated 8/20/2017
+	Updated 8/27/2017
+	<br/>
+	<center>
+		<?PHP
+			if ($_SESSION['theme'] == "classic.css"){
+				echo '<a href="index.php?theme=default">Business in the Front</a>';
+			}
+			if ($_SESSION['theme'] == "default.css"){
+				echo '<a href="index.php?theme=classic">Party in the Back</a>';
+			}
+		?>
+		
+		
+		<br/>
 	
-	<a href="auth.php?killsess=true">End Session</a>
+		<a href="auth.php?killsess=true">End Session</a>
+	</center>
+	
 	
 	
 	
@@ -892,6 +984,14 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 		$(document).ready(function(){
 			$("#exampleButton").click(function(){
 				$("#exampleBody").slideToggle("fast");
+			});
+		});
+	</script>
+	
+	<script> 
+		$(document).ready(function(){
+			$("#showImportButton").click(function(){
+				$("#importView").slideToggle("fast");
 			});
 		});
 	</script>
@@ -944,6 +1044,13 @@ $iconOverlayArray = array('0x63D6','0x6486','0x64F7','0x665D','0x6BAF','0x7066',
 		});
 	});
 	</script>
+	
+	<script>
+	
+		document.getElementById("userFile").onchange = function() {
+		document.getElementById("uploadForm").submit();
+		};
+    </script>
 	
 
 </html>

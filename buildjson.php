@@ -102,8 +102,8 @@ $phWeaponBuild .= //build  DID stats
 		$phWeaponBuild .= ',{"key":8 ,"value":'.(hexdec($_SESSION['phDidIcon'])+100663296).'}'; 			// Icon ID (Ive been using "AC Icon Browser" so for ease of data entry)
 		$phWeaponBuild .= ',{"key":22 ,"value":'.hexdec($_SESSION['phDidPhysics']).'}';
 		
-		if ($_SESSION['phDidIconOver1']) {
-			$phWeaponBuild .= ',{"key":50 ,"value":'.(hexdec($_SESSION['phDidIconOver1'])+100663296).'}';	//icon overlay 2
+		if ($_SESSION['phDidIconOver2']) {
+			$phWeaponBuild .= ',{"key":50 ,"value":'.(hexdec($_SESSION['phDidIconOver2'])+100663296).'}';	//icon overlay 2
 		}	
 		
 		if ($_SESSION['phDidIconOver1']) {
@@ -159,14 +159,16 @@ $phWeaponBuild .=	//build float stats
 		$phWeaponBuild .= '{"key":22 ,"value":'.$phVariance.'},';									// sets weapon variance
 		}
 		
-		$phWeaponBuild .= '{"key":26 ,"value":20},';  // MAX VELOCITY MISSILE
+		if ($_SESSION['phVelocity']) {
+			$phWeaponBuild .= '{"key":26 ,"value":'.$_SESSION['phVelocity'].'},'; 						 // MAX VELOCITY MISSILE
+		}
 		
 		if ($_SESSION['phMeleeBonus']) {
 			$phWeaponBuild .= '{"key":29 ,"value":'.(($_SESSION['phMeleeBonus']/100)+1).'},';		// melee defense bonus multiplier. 
 		}
 		
 		if ($_SESSION['phManaConvBonus']) {
-			$phWeaponBuild .= '{"key":29 ,"value":'.(($_SESSION['phManaConvBonus']/100)+1).'},';	// mana conversion  bonus multiplier. 
+			$phWeaponBuild .= '{"key":144 ,"value":'.(($_SESSION['phManaConvBonus']/100)).'},';	// mana conversion  bonus PERCENT NOT MULTIPLIER (0.08 = 8%)
 		}
 		
 		if ($_SESSION['phMissDefBonus']) {
@@ -231,11 +233,13 @@ $phWeaponBuild .=	//build integer stats
 		
 		$phWeaponBuild .= ',{"key":5 ,"value":'.$_SESSION['phBurden'].'}';
 	
-		//$phWeaponBuild .= ',{"key":8 ,"value":500}'; 								 	//	MASS_INT per Pea 7/31/17 PhatAc does not use this setting, go ahead and ignore it
+		if ($_SESSION['phMass']) {													//	MASS_INT per Pea 7/31/17 PhatAc does not use this setting, go ahead and ignore it, however this software will silently pass it along from an imported file
+			$phWeaponBuild .= ',{"key":8 ,"value":'.$_SESSION['phMass'].'}';
+		} 								 	
 		
 		$phWeaponBuild .= ',{"key":9 ,"value":'.$_SESSION['phLocationInt'].'}';			// 4194304 = missile 1048576=melee 16777216=caster
 		
-		$phWeaponBuild .= ',{"key":16 ,"value":1}';
+		$phWeaponBuild .= ',{"key":16 ,"value":1}';										//phItemUsable
 		
 		$phWeaponBuild .= ',{"key":19 ,"value":'.$_SESSION['phValue'].'}';
 		
@@ -321,6 +325,17 @@ $phWeaponBuild .=	//build integer stats
 		}
 		
 		
+		if ($_SESSION['phHookPlacement']) {
+			$phWeaponBuild .= ',{"key":150 ,"value":'.$_SESSION['phHookPlacement'].'}';
+		}
+		
+		
+		if ($_SESSION['phHookType']) {
+			$phWeaponBuild .= ',{"key":151 ,"value":'.$_SESSION['phHookType'].'}';
+		}
+		
+		
+		
 
 		if ($_SESSION['phWieldReq'] != 0) {
 			
@@ -365,7 +380,7 @@ $phWeaponBuild .=	//build integer stats
 			$phWeaponBuild .= ',{"key":179 ,"value":'.$phImbued.'}';
 		}		
 		
-		$phWeaponBuild .= ',{"key":263 ,"value":4}';
+		$phWeaponBuild .= ',{"key":263 ,"value":4}'; //phResisModType
 		
 		if ($_SESSION['phWeaponType']) {
 			$phWeaponBuild .= ',{"key":353 ,"value":'.$_SESSION['phWeaponType'].'}';

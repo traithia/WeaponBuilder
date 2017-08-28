@@ -16,7 +16,10 @@ if ($_GET['killsess']=='true') {
 
 if ($_GET['startnew']=='melee') {
 
+	$themeTMP = $_SESSION['theme'];
 	session_unset();
+	$_SESSION['theme'] = $themeTMP;
+	
 	$_SESSION['authorized'] = True;
 	$_SESSION['phWeenieType'] = 6;
 		
@@ -30,7 +33,10 @@ if ($_GET['startnew']=='melee') {
 
 if ($_GET['startnew']=='magic') {
 
+	$themeTMP = $_SESSION['theme'];
 	session_unset();
+	$_SESSION['theme'] = $themeTMP;
+	
 	$_SESSION['authorized'] = True;
 	$_SESSION['phWeenieType'] = 35;
 	
@@ -44,7 +50,9 @@ if ($_GET['startnew']=='magic') {
 
 if ($_GET['startnew']=='missile') {
 
+	$themeTMP = $_SESSION['theme'];
 	session_unset();
+	$_SESSION['theme'] = $themeTMP;
 	$_SESSION['authorized'] = True;
 	$_SESSION['phWeenieType'] = 3;
 	
@@ -64,10 +72,14 @@ if ($_POST['passphrase']==fetchPassword()) {
 	
 		
 		$_SESSION['authorized'] = True;
+		$_SESSION['theme'] = "classic.css";
+		
+		
 		$_SESSION['phWeenieType'] = 6;
 		
 		$_SESSION['phDef_setupDid']="0x20003d5";
 		$_SESSION['phDef_iconDid']="0x10DD";
+		
 		
 		
 		unset ($_SESSION['phSpellCount']);

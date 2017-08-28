@@ -2,7 +2,7 @@
 
 function fetchPassword() {
 
-	return 'wemustrebuild!';
+	return 'rebuild!';
 
 }
 

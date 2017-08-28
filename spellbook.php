@@ -81,7 +81,7 @@ if ($_POST['wcid']!=NULL) {
 	$_SESSION['phManaConvBonus'] = $_POST['phManaConvBonus'];
 	$_SESSION['phElementalBonus'] = $_POST['phElementalBonus'];
 	$_SESSION['phAmmoType'] = $_POST['phAmmoType'];
-	$_SESSION['phMaxVelocity'] = $_POST['phMaxVelocity'];
+	$_SESSION['phVelocity'] = $_POST['phMaxVelocity'];
 	
 	if ($_POST['phWieldReq']==0) {
 		$_SESSION['phWieldSkill']=NULL;
@@ -189,7 +189,9 @@ if($_GET['addid']) {
 			Weapon Builder - Spell Book
 		</title>
 
-		<link rel="stylesheet" type="text/css" href="default.css" />
+		<?PHP
+			echo '<link rel="stylesheet" type="text/css" href="'.$_SESSION['theme'].'" />';
+		?>
 
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -225,7 +227,7 @@ if($_GET['addid']) {
 		
 			
 			<div class="mainTitle">
-				Trai's Weapon Builder for PhatAC
+				
 			</div>		
 			
 			<div class="sectionSpacer"> </div>

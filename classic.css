@@ -1,0 +1,480 @@
+table.gxTable1 {
+	padding:8px;
+	text-align:left;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+th.gxTh1 {
+	padding:8px;
+	text-align:left;	
+	color: #FFFFFF;
+	
+}
+
+
+table.iconTable1 {
+	padding:4px;
+	text-align:left;
+	margin-left:auto;
+	margin-right:auto;
+	color:#FFFFFF;
+}
+
+th.iconTh1 {
+	padding:8px;
+	text-align:center;	
+	
+}
+
+
+div.iconHeadFoot {
+	//display:inline-block;
+	background-color: #000000;
+	//padding:10px;
+	//border: #000000 2px solid;
+	color:#FFFFFF;
+	
+	
+	
+}
+
+div.iconContainer {
+	display:inline-block;
+	background-color: #FFFFFF;
+	//padding:10px;
+	border: #000000 2px solid;
+	width:83px;
+	margin:5px;
+	padding-top:4px;
+	
+}
+
+div.iconHexText {
+	background-color: #000000;
+	color: #FFFFFF;
+	padding-top:2px;
+	padding-bottom:2px;
+	//border: #000000 2px solid;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	font-weight:bold;
+	text-align:center;
+
+	
+}
+
+
+#titleFont {
+	display:none;
+	color: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:35px;
+	font-weight:bold;
+}
+
+
+#mainBody {
+	background-color:#172d84;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:15px;
+}
+
+
+#mainContainer {
+	
+	//background-color:#69757f;
+	//background-image: url('./img/0600114D.bmp');
+	//a59f96;
+	width:970px;
+	margin-left:auto;
+	margin-right:auto;
+	//border: #000000 2px solid;
+	padding: 8px;
+	
+}
+
+#exampleBody {
+	display:none; 
+	border:#000000 2px solid;
+	background-color:#69757f;
+	margin:5px;
+	
+}
+
+div.exampleTitle {
+	background-color:#000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:16px;
+	color: #FFFFFF;
+	font-weight:bold;
+	text-align:center;
+	padding:5px;
+
+	
+	
+}
+
+
+div.section {
+	
+	background-color: #fffaed;
+	padding:15px;
+	border: #ffd626 5px ridge;
+	background-image: url('./img/060022BA.bmp');
+	color: #FFFFFF;
+	
+	
+}
+
+font.subSectionTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:16px;
+	color: #FFFFFF;
+	font-weight:bold;
+}
+	
+	
+
+
+div.sectionTitle {
+	background-color:#680808;
+	padding:5px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:20px;
+	color: #FFFFFF;
+	margin-bottom:20px;
+	border-left: #d8cb0d 7px solid;
+	border-bottom: #d8cb0d 1px solid;
+	border-top: #d8cb0d 1px solid;
+	border-right: #d8cb0d 1px solid;
+	padding-left:10px;
+	border-radius: 5px 0px 0px 5px;
+
+	
+}
+
+div.mainTitle {
+	background-color:#4789c6;
+	background-image:url('./img/wbtitle2.png');
+		height:70px;
+	padding:0px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:30px;
+	text-align:center;
+	color: #FFFFFF;
+
+	border: #ffd626 5px ridge;
+		
+}
+
+div.subSection {
+	background-color: #bce7ff;
+	padding:5px;
+	//border: #000000 2px solid;
+	border: #d8cb0d 2px solid;
+	background-image: url('./img/0600114D.bmp');
+	
+}
+
+div.sectionSpacer {
+	
+	margin-top:8px;
+}
+
+#downloadBox {
+	
+	background-color: #c6ffcc;
+	padding:15px;
+	border: #005b09 2px solid;
+	
+	
+}
+
+
+button.phButton {
+	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:20px;
+	color: #ffd626;
+	background-color: #680808;
+	padding:8px;
+	margin-left:auto;
+	margin-right:auto;
+	box-shadow: 0px 0px 15px  #000000 inset;
+}
+
+button.phButton:hover {
+	box-shadow: none;
+ 
+}
+
+img.weaponIcon {
+	
+	background-image:url('./img/ac_icons/11CB.png');
+}
+
+
+
+input.phTextBox {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:16px;
+	padding:4px;
+	border-radius:5px;
+	border: #000000 1px solid;
+
+	
+	
+}
+
+#spellContainer {
+	
+	overflow:scroll;
+	height:300px;
+	border: #ffd626 2px solid;
+}
+
+
+#phCurrentSpells {
+	overflow:scroll;
+	height:300px;
+	border: #ffd626 2px solid;
+	
+}
+
+
+
+
+#myInput {
+    
+    background-position: 10px 12px; 
+    background-repeat: no-repeat; 
+    width: 100%;
+    font-size: 16px; 
+    padding: 12px 20px 12px 40px; 
+    border: 1px solid #ddd; 
+    margin-bottom: 12px; 
+}
+
+#completeSpellList {
+    
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+	//border: #ffd626 2px solid;
+}
+
+#completeSpellList li a {
+    border: 1px solid #7c7a6d; 
+    margin-top: -1px; 
+    background-color: #423e2c; 
+    padding: 12px; 
+    text-decoration: none; 
+    font-size: 18px; 
+    color: #FFFFFF; 
+    display: block; 
+}
+
+#completeSpellList li a.header {
+    background-color: #e2e2e2; 
+    cursor: default; 
+}
+
+#completeSpellList li a:hover:not(.header) {
+    background-color: #f7e499; 
+	color: #000000
+}
+
+
+
+
+
+
+
+
+#currentSpellList {
+   
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+	//border: #ffd626 2px solid;
+	
+}
+
+#currentSpellList li a {
+    border: 1px solid #7c7a6d; 
+    margin-top: -1px; 
+    background-color: #423e2c; 
+	
+    padding: 12px; 
+    text-decoration: none; 
+    font-size: 18px; 
+    color: #FFFFFF; 
+    display: block; 
+}
+
+#currentSpellList li a.header {
+    background-color: #e2e2e2; 
+    cursor: default; 
+}
+
+#currentSpellList li a:hover:not(.header) {
+    background-color: #f7e499; 
+	color:#000000;
+}
+
+
+
+#phWieldAttribute {
+	display: none;
+	
+}
+
+
+#phWieldVital {
+	display: none;
+	
+}
+
+
+#phWieldSkill{
+	display: none;
+	
+}
+
+#phWieldValue{
+	display: none;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#phMainMenu {
+	background-color: #fffaed;
+	padding:15px;
+	border: #ffd626 5px ridge;
+	background-image: url('./img/060022BA.bmp');
+	color: #FFFFFF;
+
+}
+
+
+button.menuButton {
+	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:15px;
+	color: #ffd626;
+	background-color: #680808;
+	padding:8px;
+	margin-left:auto;
+	margin-right:auto;
+	box-shadow: 0px 0px 15px  #000000 inset;
+	border:#ffd626 1px solid;
+}
+
+button.menuButton:hover {
+	box-shadow: none;
+
+ 
+}
+
+
+font.errorRed {
+	color:#8e0000;
+	background-color:#ffd626;
+	padding:3px;
+}
+
+
+#showImportButton {
+	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:15px;
+	color: #ffd626;
+	background-color: #002782;
+	padding:8px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:5px;
+	box-shadow: 0px 0px 15px  #000000 inset;
+	border:#ffd626 1px solid;
+	
+}
+#showImportButton:hover {
+	box-shadow: none;
+
+ 
+}
+
+
+table.gxMenuTable {
+	padding:3px;
+	text-align:left;
+
+}
+
+th.gxThMenu {
+	padding:3px;
+	text-align:left;	
+	color: #FFFFFF;
+	
+}
+
+
+#importView {
+	display: none;
+	
+}
+
+#uploadForm {
+	height:200px;
+	border: 4px dashed #ffd626;
+	background: rgba(0,0,0,0.5);
+}
+
+#userFile {
+	//position: absolute;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	outline: none;
+	opacity: 0;
+}
+
+
+#importText {
+
+	text-align: center;
+
+	color: #ffffff;
+	font-family: Arial;
+	margin-top:10px;
+	margin-bottom:10px;
+	
+}
+
+#importReturn {
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:16px;
+	background-color: #287730;
+	padding:15px;
+	text-align:center;
+	border: #ffd626 5px ridge;
+	// background-image: url('./img/060022BA.bmp');
+	color: #FFFFFF;
+	
+}
