@@ -991,17 +991,8 @@ if ($_SESSION['phWeenieType']==6) {
 	</form>
 	</div>
 	
-	Updated 8/27/2017
-	<br/>
-	<center>
-		<?PHP
-			if ($_SESSION['theme'] == "classic.css"){
-				echo '<a href="index.php?theme=default">Business in the Front</a>';
-			}
-			if ($_SESSION['theme'] == "default.css"){
-				echo '<a href="index.php?theme=classic">Party in the Back</a>';
-			}
-		?>
+	Updated 9/23/2017
+
 		
 		
 		<br/>

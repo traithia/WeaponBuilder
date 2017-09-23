@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 13, 2017 at 01:59 PM
+-- Generation Time: Sep 23, 2017 at 01:13 PM
 -- Server version: 5.7.19-0ubuntu0.16.04.1
 -- PHP Version: 7.0.22-0ubuntu0.16.04.1
 
@@ -227,6 +227,69 @@ INSERT INTO `materials` (`id`, `enum`, `name`) VALUES
 (229, 75, 'Oak'),
 (230, 76, 'Pine'),
 (231, 77, 'Teak');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `skills`
+--
+
+CREATE TABLE `skills` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `enum` int(10) UNSIGNED NOT NULL,
+  `name` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `skills`
+--
+
+INSERT INTO `skills` (`id`, `enum`, `name`) VALUES
+(1, 6, 'MELEE DEFENSE\r\n'),
+(2, 7, 'MISSILE DEFENSE\r\n'),
+(3, 14, 'ARCANE LORE\r\n'),
+(4, 15, 'MAGIC DEFENSE\r\n'),
+(5, 16, 'MANA CONVERSION\r\n'),
+(6, 18, 'ITEM TINKERING\r\n'),
+(7, 19, 'ASSESS PERSON\r\n'),
+(8, 20, 'DECEPTION\r\n'),
+(9, 21, 'HEALING\r\n'),
+(10, 22, 'JUMP\r\n'),
+(11, 23, 'LOCKPICK\r\n'),
+(12, 24, 'RUN\r\n'),
+(13, 27, 'ASSES CREATURE\r\n'),
+(14, 28, 'WEAPON TINKERING\r\n'),
+(15, 29, 'ARMOR TINKERING\r\n'),
+(16, 30, 'MAGIC ITEM TINKERING\r\n'),
+(17, 31, 'CREATURE ENCHANTMENT\r\n'),
+(18, 32, 'ITEM ENCHANTMENT\r\n'),
+(19, 33, 'LIFE MAGIC\r\n'),
+(20, 34, 'WAR MAGIC\r\n'),
+(21, 35, 'LEADERSHIP\r\n'),
+(22, 36, 'LOYALTY\r\n'),
+(23, 37, 'FLETCHING\r\n'),
+(24, 38, 'ALCHEMY\r\n'),
+(25, 39, 'COOKING\r\n'),
+(26, 40, 'SALVAGING\r\n'),
+(27, 41, 'TWO HANDED COMBAT\r\n'),
+(28, 43, 'VOID MAGIC\r\n'),
+(29, 44, 'HEAVY WEAPONS\r\n'),
+(30, 45, 'LIGHT WEAPONS\r\n'),
+(31, 46, 'FINESSE WEAPONS\r\n'),
+(32, 47, 'MISSILE WEAPONS\r\n'),
+(33, 48, 'SHIELD\r\n'),
+(34, 49, 'DUAL WIELD\r\n'),
+(35, 50, 'RECKLESSNESS\r\n'),
+(36, 51, 'SNEAK ATTACK\r\n'),
+(37, 52, 'DIRTY FIGHTING\r\n'),
+(38, 54, 'SUMMONING'),
+(39, 1, 'AXE (depreciated)'),
+(40, 4, 'DAGGER (depreciated)'),
+(41, 5, 'MACE (depreciated)'),
+(42, 9, 'SPEAR (depreciated)'),
+(43, 10, 'STAFF (depreciated)'),
+(44, 11, 'SWORD (depreciated)'),
+(45, 13, 'UNARMED COMBAT (depreciated)');
 
 -- --------------------------------------------------------
 
@@ -6533,6 +6596,12 @@ ALTER TABLE `materials`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `skills`
+--
+ALTER TABLE `skills`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `spells`
 --
 ALTER TABLE `spells`
@@ -6552,6 +6621,11 @@ ALTER TABLE `creatureType`
 --
 ALTER TABLE `materials`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=232;
+--
+-- AUTO_INCREMENT for table `skills`
+--
+ALTER TABLE `skills`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `spells`
 --
