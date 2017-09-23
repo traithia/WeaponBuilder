@@ -412,7 +412,7 @@ if ($_GET['theme']) {
 							Maximum Velocity:
 						</th>
 						<th class="gxTh1">
-							<input type="text" name="phVelocity" value="'.$_SESSION['phMaxVelocity'].'">
+							<input type="text" name="phVelocity" value="'.$_SESSION['phVelocity'].'">
 						</th>
 						<th class="gxTh1">
 							Ammo Type:
@@ -643,23 +643,38 @@ if ($_GET['theme']) {
 						<input type="text" name="phSlayerBonus" value="<?PHP echo $_SESSION['phSlayerBonus']; ?>">
 					</th>
 				</tr>
-				<tr>
-					<th class="gxTh1">
-						Attack Type:
-					</th>
-					<th class="gxTh1">
-						<input type="text" name="phAttackType" value="<?PHP echo $_SESSION['phAttackType']; ?>">
-					</th>
-					
-					<th class="gxTh1">
-					</th>
-					<th class="gxTh1">
-					</th>
-					
-				</tr>
 			</table>
-			
-			
+
+<?PHP 
+if ($_SESSION['phWeenieType']==6) {	
+	echo '
+				<table class="gxTable1">
+					<tr>
+						<th class="gxTh1">
+							Attack Type:
+						</th>
+						<th class="gxTh1">
+						</th>
+					</tr>
+					<tr>
+						<th class="gxTh1">
+							<input type="checkbox" name="phATPunch" value=1 '; if ($_SESSION['phATPunch']==1){ echo 'CHECKED'; } echo '> Punch<br/>
+							<input type="checkbox" name="phATThrust" value=2 '; if ($_SESSION['phATThrust']==2){ echo 'CHECKED'; } echo '> Thrust<br/>
+							<input type="checkbox" name="phATSlash" value=4 '; if ($_SESSION['phATSlash']==4){ echo 'CHECKED'; } echo '> Slash<br/>
+							<input type="checkbox" name="phATKick" value=8 '; if ($_SESSION['phATKick']==8){ echo 'CHECKED'; } echo '> Kick<br/>
+						</th>	
+						<th class="gxTh1">
+							<input type="checkbox" name="phATDoubSlash" value=32 '; if ($_SESSION['phATDoubSlash']==32){ echo 'CHECKED'; } echo '> Double Slash<br/>
+							<input type="checkbox" name="phATTripSlash" value=64 '; if ($_SESSION['phATTripSlash']==64){ echo 'CHECKED'; } echo '> Triple Slash<br/>
+							<input type="checkbox" name="phATDoubThrust" value=128 '; if ($_SESSION['phATDoubThrust']==128){ echo 'CHECKED'; } echo '> Double Thrust<br/>
+							<input type="checkbox" name="phATTripThrust" value=256 '; if ($_SESSION['phATTripThrust']==256){ echo 'CHECKED'; } echo '> Triple Thrust<br/>
+						</th>					
+						
+					</tr>
+				</table>
+	';
+}
+?>			
 			
 			<table class="gxTable1">
 				<tr>
@@ -844,7 +859,7 @@ if ($_GET['theme']) {
 		
 		<div class="section">
 			<div class="sectionTitle">
-				Data IDs
+				Data IDs and Styling
 			</div>
 			*All values in this section should be in hexidecimal format EXCLUDING "Translucency" and "Scale", which are floating points.
 			
@@ -889,6 +904,29 @@ if ($_GET['theme']) {
 						</th>
 						<th class="gxTh1">
 							<input type="text" name="phDidIcon" value="<?PHP echo $_SESSION['phDidIcon']; ?>" required>
+						</th>
+						<th class="gxTh1">
+							Icon Outline:
+						</th>
+						<th class="gxTh1">
+							<select name="phUiEffects">
+								<option value=0>Black / No Outline</option>
+								<option value=1 <?PHP if ($_SESSION['phUiEffects']==1){ echo 'SELECTED'; } ?>>Blue</option>
+								<option value=2 <?PHP if ($_SESSION['phUiEffects']==2){ echo 'SELECTED'; } ?>>Green</option>
+								<option value=4 <?PHP if ($_SESSION['phUiEffects']==4){ echo 'SELECTED'; } ?>>Red</option>
+								<option value=8 <?PHP if ($_SESSION['phUiEffects']==8){ echo 'SELECTED'; } ?>>Yellow</option>
+								<option value=16 <?PHP if ($_SESSION['phUiEffects']==16){ echo 'SELECTED'; } ?>>Orange</option>
+								<option value=32 <?PHP if ($_SESSION['phUiEffects']==32){ echo 'SELECTED'; } ?>>Purple</option>
+								<option value=64 <?PHP if ($_SESSION['phUiEffects']==64){ echo 'SELECTED'; } ?>>Light Blue</option>
+								<option value=128 <?PHP if ($_SESSION['phUiEffects']==128){ echo 'SELECTED'; } ?>>Light Green</option>
+								<option value=256 <?PHP if ($_SESSION['phUiEffects']==256){ echo 'SELECTED'; } ?>>Grey</option>
+								<option value=512 <?PHP if ($_SESSION['phUiEffects']==512){ echo 'SELECTED'; } ?>>Pink</option>
+								<option value=1024 <?PHP if ($_SESSION['phUiEffects']==1024){ echo 'SELECTED'; } ?>>Cream/White</option>
+							</select>
+							
+							
+							
+							
 						</th>
 					</tr>
 						<th class="gxTh1">

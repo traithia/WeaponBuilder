@@ -201,6 +201,9 @@ $phWeaponBuild .=	//build float stats
 			$phWeaponBuild .= '{"key":138 ,"value":'.(($_SESSION['phSlayerBonus']/100)+1).'},';		// Slayer weapon bonus 
 		}
 		
+		if ($_SESSION['phResistMod']) {
+			$phWeaponBuild .= '{"key":157 ,"value":'.$_SESSION['phResistMod'].'},';		// Slayer weapon bonus 
+		}
 		
 		$phWeaponBuild .= '{"key":21 ,"value":1}';													// WEAPON_LENGTH_FLOAT absolutley no clue what this does.
 		
@@ -233,13 +236,15 @@ $phWeaponBuild .=	//build integer stats
 		
 		$phWeaponBuild .= ',{"key":5 ,"value":'.$_SESSION['phBurden'].'}';
 	
-		if ($_SESSION['phMass']) {													//	MASS_INT per Pea 7/31/17 PhatAc does not use this setting, go ahead and ignore it, however this software will silently pass it along from an imported file
+		if ($_SESSION['phMass']) {														//	MASS_INT per Pea 7/31/17 PhatAc does not use this setting, go ahead and ignore it, however this software will silently pass it along from an imported file
 			$phWeaponBuild .= ',{"key":8 ,"value":'.$_SESSION['phMass'].'}';
 		} 								 	
 		
 		$phWeaponBuild .= ',{"key":9 ,"value":'.$_SESSION['phLocationInt'].'}';			// 4194304 = missile 1048576=melee 16777216=caster
 		
 		$phWeaponBuild .= ',{"key":16 ,"value":1}';										//phItemUsable
+		
+		$phWeaponBuild .= ',{"key":18 ,"value":'.$_SESSION['phUiEffects'].'}';			// UI_EFFECTS_INT  icon outline color
 		
 		$phWeaponBuild .= ',{"key":19 ,"value":'.$_SESSION['phValue'].'}';
 		
@@ -273,7 +278,18 @@ $phWeaponBuild .=	//build integer stats
 		
 		
 		if ($_SESSION['phWeenieType']==6) {	// check if weapon is melee
-			$phWeaponBuild .= ',{"key":47 ,"value":'.$_SESSION['phAttackType'].'}';		// **animation type for attacks. I think this requires two combined values, one for fast attacks and one for slow attacks (ie stab or slash with sword)
+		
+			$phAttackType =
+				$_SESSION['phATPunch'] +
+				$_SESSION['phATThrust'] +
+				$_SESSION['phATSlash'] +
+				$_SESSION['phATKick'] +
+				$_SESSION['phATDoubSlash'] +
+				$_SESSION['phATTripSlash'] +
+				$_SESSION['phATDoubThrust'] +
+				$_SESSION['phATTripThrust'];
+
+			$phWeaponBuild .= ',{"key":47 ,"value":'.$phAttackType.'}';		// **animation type for attacks. I think this requires two combined values, one for fast attacks and one for slow attacks (ie stab or slash with sword)
 		}
 		
 		

@@ -31,7 +31,7 @@ session_unset();
 require ('../db_connect.php');
 
 
-
+$phDebug = false;
 
 $mkProp = "";
 $tickTock = 0;
@@ -49,6 +49,10 @@ foreach($json_array as $key => $arrays){
     //echo $key . "<br />";
 	
 	$mkProp = $key;
+	
+	if ($phDebug) {
+		echo '<b>'.$mkProp.'</b><br/>';
+	}
 
     foreach($arrays as $array){
         foreach($array as $key => $value){
@@ -93,6 +97,8 @@ foreach($json_array as $key => $arrays){
 			if ($mkKey==7){ $_SESSION['phDidClothingBase'] = '0x'.dechex($value); $valueUsed = true;}
 			if ($mkKey==8){ $_SESSION['phDidIcon'] = '0x'.(dechex($value-100663296)); $valueUsed = true;}
 			if ($mkKey==22){ $_SESSION['phDidPhysics'] = '0x'.dechex($value); $valueUsed = true;}
+			if ($mkKey==30){ $_SESSION['phDidPhysicsScript'] = '0x'.dechex($value); $valueUsed = true;}
+			
 			if ($mkKey==50){ $_SESSION['phDidIconOver2'] = '0x'.(dechex($value-100663296)); $valueUsed = true;}
 			if ($mkKey==51){ $_SESSION['phDidIconOver1'] = '0x'.(dechex($value-100663296)); $valueUsed = true;}
 			if ($mkKey==52){ $_SESSION['phDidIconUnder'] = '0x'.(dechex($value-100663296)); $valueUsed = true;}
@@ -112,9 +118,10 @@ foreach($json_array as $key => $arrays){
 			if ($mkKey==62){ $_SESSION['phAttackBonus'] = round(($value - 1) * 100); $valueUsed = true;}	
 			if ($mkKey==63){ $_SESSION['phDamageMod'] = round(($value - 1) * 100); $valueUsed = true;}	
 			if ($mkKey==76){ $_SESSION['phTranslucent'] = ($value); $valueUsed = true;}	
+			if ($mkKey==77){ $_SESSION['phPhysicsScriptIntensity'] = ($value); $valueUsed = true;}	
 			if ($mkKey==138){ $_SESSION['phSlayerBonus'] = round(($value - 1) * 100); $valueUsed = true;}	
 			if ($mkKey==21){ $_SESSION['phLength'] = ($value); $valueUsed = true;}	
-			
+			if ($mkKey==157){ $_SESSION['phResistMod'] = ($value); $valueUsed = true;}	
 		
 		
 		}
@@ -133,7 +140,53 @@ foreach($json_array as $key => $arrays){
 			if ($mkKey==44){ $_SESSION['phMaxDamage'] = $value; $valueUsed = true;}	
 			if ($mkKey==45){ $_SESSION['phDamageType'] = $value; $valueUsed = true;}	
 			if ($mkKey==46){ $_SESSION['phCombatStyle'] = $value; $valueUsed = true;}	
-			if ($mkKey==47){ $_SESSION['phAttackType'] = $value; $valueUsed = true;}	
+
+			if ($mkKey==47){ 
+			
+				if ($value >= 16384) { $value = $value - 16384; }	// Offhand AttackType not supported
+				if ($value >= 8192) { $value = $value - 8192; }		// Offhand AttackType not supported
+				if ($value >= 4096) { $value = $value - 4096; }		// Offhand AttackType not supported
+				if ($value >= 2048) { $value = $value - 2048; }		// Offhand AttackType not supported
+				if ($value >= 1024) { $value = $value - 1024; }		// Offhand AttackType not supported
+				if ($value >= 512) { $value = $value - 512; }		// Offhand AttackType not supported
+				
+				if ($value >= 256) { 
+					$_SESSION['phATTripThrust'] = 256;
+					$value = $value - 256;
+				}
+				if ($value >= 128) { 
+					$_SESSION['phATDoubThrust'] = 128;
+					$value = $value - 128;
+				}
+				if ($value >= 64) { 
+					$_SESSION['phATTripSlash'] = 64;
+					$value = $value - 64;
+				}
+				if ($value >= 32) { 
+					$_SESSION['phATDoubSlash'] = 32;
+					$value = $value - 32;
+				}
+				if ($value >= 16) { $value = $value - 16; }		// Offhand AttackType not supported
+				if ($value >= 8) { 
+					$_SESSION['phATKick'] = 8;
+					$value = $value - 8;
+				}
+				if ($value >= 4) { 
+					$_SESSION['phATSlash'] = 4;
+					$value = $value - 4;
+				}
+				if ($value >= 2) { 
+					$_SESSION['phATThrust'] = 2;
+					$value = $value - 2;
+				}
+				if ($value >= 1) { 
+					$_SESSION['phATPunch'] = 1;
+					$value = $value - 1;
+				}
+				
+				$valueUsed = true;
+			}
+			
 			if ($mkKey==48){ $_SESSION['phSkillType'] = $value; $valueUsed = true;}	
 			if ($mkKey==49){ $_SESSION['phSpeed'] = $value; $valueUsed = true;}	
 			if ($mkKey==50){ $_SESSION['phAmmoType'] = $value; $valueUsed = true;}	
@@ -240,6 +293,8 @@ foreach($json_array as $key => $arrays){
 
 		if ($valueUsed==False AND $tickTock==1 AND $mkProp!='spellbook') {
 			
+			echo 'KEY:'.$mkKey.'<br/>VALUE:'.$value.'<br/><br/>';
+			
 			$notUsedCount++;
 			
 		}
@@ -259,7 +314,7 @@ foreach($json_array as $key => $arrays){
 
 }
 
-mysqli_close ($db_conn);	
+mysqli_close ($db_conn);
 
 
 $_SESSION['phWeenieType'] = $json_array[weenieType];
@@ -272,7 +327,14 @@ $_SESSION['phImportedKeys'] = $totalUsed;
 $_SESSION['phUnknownKeys'] = $notUsedCount;
 
 
-header("Location: index.php");
+if ($phDebug) {
+	
+	die ('Press "back" button to return to index');
+	
+}
+else {
+	header("Location: index.php");
+}
 
 
 

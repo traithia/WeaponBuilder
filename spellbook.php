@@ -37,7 +37,14 @@ if ($_POST['wcid']!=NULL) {
 	$_SESSION['phDescription'] = $_POST['phDescription'];
 	$_SESSION['phSlayer'] = $_POST['phSlayer'];
 	$_SESSION['phSlayerBonus'] = $_POST['phSlayerBonus'];
-	$_SESSION['phAttackType'] = $_POST['phAttackType'];
+	$_SESSION['phATPunch'] = $_POST['phATPunch'];
+	$_SESSION['phATThrust'] = $_POST['phATThrust'];
+	$_SESSION['phATSlash'] = $_POST['phATSlash'];
+	$_SESSION['phATKick'] = $_POST['phATKick'];
+	$_SESSION['phATDoubSlash'] = $_POST['phATDoubSlash'];
+	$_SESSION['phATTripSlash'] = $_POST['phATTripSlash'];
+	$_SESSION['phATDoubThrust'] = $_POST['phATDoubThrust'];
+	$_SESSION['phATTripThrust'] = $_POST['phATTripThrust'];
 	$_SESSION['phCombatStyle'] = $_POST['phCombatStyle'];
 	$_SESSION['phTinkCritStrike'] = $_POST['phTinkCritStrike'];
 	$_SESSION['phTinkCripBlow'] = $_POST['phTinkCripBlow'];
@@ -81,7 +88,10 @@ if ($_POST['wcid']!=NULL) {
 	$_SESSION['phManaConvBonus'] = $_POST['phManaConvBonus'];
 	$_SESSION['phElementalBonus'] = $_POST['phElementalBonus'];
 	$_SESSION['phAmmoType'] = $_POST['phAmmoType'];
-	$_SESSION['phVelocity'] = $_POST['phMaxVelocity'];
+	$_SESSION['phVelocity'] = $_POST['phVelocity'];
+	$_SESSION['phUiEffects'] = $_POST['phUiEffects'];
+	$_SESSION['phResistMod'] = $_POST['phResistMod'];
+
 	
 	if ($_POST['phWieldReq']==0) {
 		$_SESSION['phWieldSkill']=NULL;
@@ -312,7 +322,7 @@ if($_GET['addid']) {
 				ul = document.getElementById("completeSpellList");
 				li = ul.getElementsByTagName('li');
 
-				// Loop through all list items, and hide those who don't match the search query
+				
 				for (i = 0; i < li.length; i++) {
 					a = li[i].getElementsByTagName("a")[0];
 					if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
